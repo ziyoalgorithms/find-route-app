@@ -1,24 +1,24 @@
-from django.shortcuts import get_object_or_404, render
+import django
+from django.shortcuts import render
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 from cities.models import City
 from . import forms
 
 
 def home(request, pk=None):
-    if request.method == 'POST':
-        form = forms.CityForm(request.POST)
-        if form.is_valid():
-            form.save()
-    form = forms.CityForm()
     title = "Shaharlar ro'yhati"
     qs = City.objects.all()
+    list = Paginator(qs, 5)
+    page_number = request.GET.get('page')
+    page_obj = list.get_page(page_number)
     context = {
         "title": title,
-        "objects_list": qs,
-        "form": form,
+        "page_obj": page_obj,
         }
+    
     return render(request, 'cities/home.html', context)
 
 

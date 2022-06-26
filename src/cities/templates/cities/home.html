@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Shaharlar ro'yhati:</h1>
+<h1>
+    <p align="center">Shaharlar ro'yhati:</p>
+</h1>
 <div class="row">
-    <div class="col-md">
-        {% for object in objects_list %}
-            <p>
-                <a href={% url 'cities:detail_city' object.id %}>
-                    {{object.name}}
-                </a>
-            </p>
+    <div class="col-md-8 mx-auto my-2">
+        <table class="table table-striped">
+        {% for object in page_obj %}
+            <tr>
+                <td>
+                    <a href={% url 'cities:detail_city' object.id %}>{{object.name}}</a>
+                </td>
+                <td>
+                    <a href={% url 'cities:update' object.id %}>Tahrirlash</a>
+                </td>
+                <td>
+                    <a href={% url 'cities:delete' object.id %}>
+                        <button type="submit" class="btn btn-danger">O'chirish</button>
+                    </a>
+                </td>
+            </tr>
         {% endfor %}
+        </table>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit">
-        </form>
+<nav aria-label="...">
+    <div class="col-md-8 mx-auto">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for page in page_obj.paginator.page_range %}
+            <li class="page-item {% if page == page_obj.number %} active {% endif %}"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            </li>
+            {% endif %}
+          </ul>
     </div>
-</div>
+</nav>
 
 {% endblock  %}
