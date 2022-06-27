@@ -8,7 +8,7 @@ class HtmlForm(forms.Form):
 
 
 class CityForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Shahar nomini kiriting"}))
+    name = forms.CharField(label="Shahar:", widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Shahar nomini kiriting"}))
 
     class Meta:
         model = City

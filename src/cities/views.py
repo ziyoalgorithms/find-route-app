@@ -1,8 +1,9 @@
-import django
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.core.paginator import Paginator
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 from cities.models import City
 from . import forms
@@ -29,27 +30,30 @@ class CityDetailView(DetailView):
 
 
 
-class CityCreateView(CreateView):
+class CityCreateView(SuccessMessageMixin, CreateView):
     model = City
     form_class = forms.CityForm
     template_name = 'cities/create.html'
     success_url = reverse_lazy('cities:home')
+    success_message = "Shahar muvaffaqqiyatli qo'shildi!"
 
 
 
-class CityUpdateView(UpdateView):
+
+class CityUpdateView(SuccessMessageMixin, UpdateView):
     model = City
     form_class = forms.CityForm     
     template_name = 'cities/update.html'
     success_url = reverse_lazy('cities:home')
+    success_message = "Shahar haqidagi ma'lumotlar muvaffaqqiyatli tahrirlandi!"
 
 
 
 class CityDeleteView(DeleteView):
     model = City
-    template_name = 'cities/delete.html'
+    # template_name = 'cities/delete.html'
     success_url = reverse_lazy('cities:home')
 
-    # Ogohlantirishsiz o'chirish
-    # def get(self, request, *args, **kwargs):
-    #     return self.post(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
