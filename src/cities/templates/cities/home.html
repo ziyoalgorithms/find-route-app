@@ -46,4 +46,14 @@
     </div>
 </nav>
 
+<div class="row">
+    <div class="col-md-4">
+        <form action="{% url 'cities:create' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Saqlash</button>
+        </form>
+    </div>
+</div>
+
 {% endblock  %}
