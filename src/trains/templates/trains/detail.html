@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Shahar {% endblock %}
+
+{% block content %}
+<h1>Shahar:</h1>
+<div class="row">
+    <div class="col-md">
+        <table class="table table-striped">
+            <tr>
+                <th>Nomer: </th>
+                <th>Qayerdan: </th>
+                <th>Qayerga: </th>
+                <th>Yo'l vaqti: </th>
+            </tr>
+            <tr>
+                <td>{{object.name}}</td>
+                <td>{{object.from_city}}</td>
+                <td>{{object.to_city}}</td>
+                <td>{{object.travel_time}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class+"row">
+    <div class="col-md">
+        <a href="{% url 'trains:home' %}">
+            <button type="button" class="btn btn-light">Shaharlar ro'yhatiga qaytish</button>
+        </a>
+    </div>
+</div>
+{% endblock  %}

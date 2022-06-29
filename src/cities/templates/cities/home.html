@@ -13,7 +13,9 @@
                     <a href={% url 'cities:detail_city' object.id %}>{{object.name}}</a>
                 </td>
                 <td>
-                    <a href={% url 'cities:update' object.id %}>Tahrirlash</a>
+                    <a href={% url 'cities:update' object.id %}>
+                        <button type="submit" class="btn btn-primary">Tahrirlash</button>
+                    </a>
                 </td>
                 <td>
                     <a href={% url 'cities:delete' object.id %}>

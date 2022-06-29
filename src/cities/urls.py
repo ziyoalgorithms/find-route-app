@@ -13,4 +13,3 @@ urlpatterns = [
     path('delete/<int:pk>/', views.CityDeleteView.as_view(), name='delete'),
 
 ]
-

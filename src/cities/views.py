@@ -15,7 +15,7 @@ def home(request, pk=None):
         form = forms.CityForm(request.POST)
         if form.is_valid():
             form.save
-    form = forms.CityForm
+    form = forms.CityForm()
     qs = City.objects.all()
     list = Paginator(qs, 5)
     page_number = request.GET.get('page')
