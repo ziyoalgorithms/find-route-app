@@ -12,16 +12,21 @@
                 <td>
                     <a href={% url 'cities:detail_city' object.id %}>{{object.name}}</a>
                 </td>
-                <td>
-                    <a href={% url 'cities:update' object.id %}>
-                        <button type="submit" class="btn btn-primary">Tahrirlash</button>
-                    </a>
-                </td>
-                <td>
-                    <a href={% url 'cities:delete' object.id %}>
-                        <button type="submit" class="btn btn-danger">O'chirish</button>
-                    </a>
-                </td>
+                {% if user.is_authenticated %}
+                    <td>
+                        <a href={% url 'cities:update' object.id %}>
+                            <button type="submit" class="btn btn-primary">Tahrirlash</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href={% url 'cities:delete' object.id %}>
+                            <button type="submit" class="btn btn-danger">O'chirish</button>
+                        </a>
+                    </td>
+                {% else %}
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </table>
@@ -48,6 +53,7 @@
     </div>
 </nav>
 
+{% if user.is_authenticated %}
 <div class="row">
     <div class="col-md-4">
         <form action="{% url 'cities:create' %}" method="post">
@@ -57,5 +63,6 @@
         </form>
     </div>
 </div>
+{% endif %}
 
 {% endblock  %}

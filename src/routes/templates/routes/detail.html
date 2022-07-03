@@ -13,6 +13,7 @@
                 <th>Qayerga: </th>
                 <th>Yo'l vaqti: </th>
                 <th>Marshrut bo'yicha poyezdlar ro'yhati </th>
+                <th>&nbsp;</th>
             </tr>
                 <tr>
                     <td>
@@ -25,6 +26,13 @@
                         {% for train in object.trains.all %}
                         <p>{{ train }} yo'lvaqti {{ train.travel_time }}</p>
                         {% endfor %}
+                    </td>
+                    <td>
+                        {% if user.is_authenticated %}
+                        <a href={% url 'delete' object.id %}>
+                            <button type="submit" class="btn btn-danger">O'chirish</button>
+                        </a>
+                        {% endif %} &nbsp;
                     </td>
                 </tr>
         </table>
