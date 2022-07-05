@@ -1,6 +1,7 @@
 from pathlib import Path
 import dj_database_url
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,6 +82,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+if 'test' in sys.argv:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 
 
