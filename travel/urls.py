@@ -14,5 +14,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.RouteDeleteView.as_view(), name='delete'),
     path('cities/', include('cities.urls', namespace='cities')),
     path('trains/', include('trains.urls', namespace='trains')),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('account/', include('account.urls', namespace='account')),
 ]

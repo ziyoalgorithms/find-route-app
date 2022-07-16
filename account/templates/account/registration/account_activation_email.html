@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Assalomu alaykum {{ user.user_name }},
+
+Hisobingiz muvaffaqiyatli yaratildi, hisobingizni faollashtirish uchun quyidagi havolani bosing
+
+http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+
+{% endautoescape %}

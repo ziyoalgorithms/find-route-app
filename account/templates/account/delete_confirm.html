@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Akkaunti o'chirish{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h3 class="mb-4">Delete Account</h3>
+        <p>Akkauntingizni o'chirishni hohlaysizmi?</p>
+        <button type="submit" class="btn btn-danger">
+            <a href="{% url 'account:delete_user_confirmation' user.pk %}">O'chirish</a>
+        </button>
+    </div>
+</div>
+
+{% endblock %}

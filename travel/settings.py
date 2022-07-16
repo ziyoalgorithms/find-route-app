@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'fensjgvnesngointio4nh5io42j344q6#%YU%QB$ny3biy4l3nqt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'cities',
     'trains',
     'routes',
-    'accounts',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +70,7 @@ WSGI_APPLICATION = 'travel.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
 
 
 DATABASES = {
@@ -120,6 +121,11 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Custom user model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_URL = '/account/login/'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -130,6 +136,15 @@ STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email setting
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 db = dj_database_url.config()
 DATABASES['default'].update(db)
