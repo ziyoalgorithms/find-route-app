@@ -35,6 +35,11 @@ INSTALLED_APPS = [
     'account',
 ]
 
+
+
+ROOT_URLCONF = 'market_prj.urls'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -146,8 +151,10 @@ EMAIL_HOST_USER = 'studiovisual0077@gmail.com'
 EMAIL_HOST_PASSWORD = 'ackkfyihgqvoswsl'
 
 
-db = dj_database_url.config()
-DATABASES['default'].update(db)
+
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
 
 # LOGGING = {
 #     'version': 1,
