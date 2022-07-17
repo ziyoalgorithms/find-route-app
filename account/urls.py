@@ -40,7 +40,7 @@ urlpatterns = [
         name='password_reset_done',
     ),
     path(
-        'password_reset_confirm/Mw/set-password/password_reset_complete/',
+        'password_reset_confirm/Nw/set-password/password_reset_complete/',
         TemplateView.as_view(template_name='account/reset_status.html'),
         name='password_reset_complete'
     ),
