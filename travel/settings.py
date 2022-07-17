@@ -146,8 +146,8 @@ EMAIL_HOST_USER = 'studiovisual0077@gmail.com'
 EMAIL_HOST_PASSWORD = 'ackkfyihgqvoswsl'
 
 
-# db = dj_database_url.config()
-# DATABASES['default'].update(db)
+db = dj_database_url.config()
+DATABASES['default'].update(db)
 
 # LOGGING = {
 #     'version': 1,
