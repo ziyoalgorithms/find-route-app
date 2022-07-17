@@ -61,17 +61,6 @@ def account_activate(request, uidb64, token):
 
 
 
-def login_view(request):
-    form = UserLoginForm(request.POST or None)
-    _next = request.GET.get('next')
-    if form.is_valid():
-        _next = _next or '/'
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user=user)
-        return redirect(_next)
-    return render(request, 'account/login.html', {'form': form})
 
 
 def logout_view(request):
