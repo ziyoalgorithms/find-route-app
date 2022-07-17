@@ -57,15 +57,13 @@ class UserLoginForm(AuthenticationForm):
 
     user_name = forms.CharField(label='Username', widget=forms.TextInput(attrs={
         "class": "form-control mb-3",
-        "placeholder": "Usernameni kiriting"}))
+        "placeholder": "Usernameni kiriting",
+        'id': 'login-username'}))
 
     password = forms.CharField(label='Parol', widget=forms.PasswordInput(attrs={
         "class": "form-control mb-3",
-        "placeholder": "Parolni kiriting"}))
-
-    class Meta:
-        models = UserBase
-        fields = ('user_name', 'password')
+        "placeholder": "Parolni kiriting",
+        'id': 'login-pwd'}))
 
 
 class PwdResetForm(PasswordResetForm):
