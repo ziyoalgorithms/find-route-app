@@ -1,10 +1,10 @@
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path, include
 
 from routes import views
 
 urlpatterns = [
-    path('salom/', admin.site.urls),
+    # path('salom/', admin.site.urls),
     path('', views.home, name='home'),
     path('find_routes/', views.find_routes, name='find_routes'),
     path('add_route/', views.add_route, name='add_route'),
