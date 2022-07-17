@@ -63,6 +63,10 @@ class UserLoginForm(AuthenticationForm):
         "class": "form-control mb-3",
         "placeholder": "Parolni kiriting"}))
 
+    class Meta:
+        models = UserBase
+        fields = ('user_name', 'password')
+
 
 class PwdResetForm(PasswordResetForm):
 
