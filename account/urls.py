@@ -10,15 +10,14 @@ app_name = 'account'
 
 urlpatterns = [
     path('register/', views.account_register, name='register'),
-    path('activate/<slug:uidb64>/<slug:token>/', views.account_activate, name='activate'),
-    path(
-        "login/",
-        auth_views.LoginView.as_view(template_name="account/login.html", form_class=UserLoginForm),
-        name="login",
-    ),
+    path('activate/<slug:uidb64>/<slug:token>/',
+         views.account_activate, name='activate'),
+    path('login/', views.login_user, name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('delete_user/', TemplateView.as_view(template_name="account/delete_confirm.html"), name='delete_user'),
-    path('delete_user_confirm/<int:pk>/', views.delete_user, name='delete_user_confirmation'),
+    path('delete_user/', TemplateView.as_view(
+        template_name="account/delete_confirm.html"), name='delete_user'),
+    path('delete_user_confirm/<int:pk>/', views.delete_user,
+         name='delete_user_confirmation'),
     path(
         'password_reset/',
         auth_views.PasswordResetView.as_view(
@@ -36,7 +35,7 @@ urlpatterns = [
             success_url='password_reset_complete/',
             form_class=PwdResetConfirmForm,
         ),
-        name='password_reset_confirm'  
+        name='password_reset_confirm'
     ),
     path(
         'password_reset/password_reset_email_confirm/',
@@ -49,4 +48,4 @@ urlpatterns = [
         name='password_reset_complete'
     ),
     # path("edit/", views.edit_details, name="edit_details"),
-    ]
+]

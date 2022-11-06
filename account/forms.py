@@ -8,15 +8,16 @@ from .models import UserBase
 
 class RegistrationForm(forms.ModelForm):
 
-    user_name = forms.CharField(label='Enter Username', min_length=4, max_length=50, help_text='Required')
-    email = forms.EmailField(max_length=100, help_text='Required', error_messages={'required': 'Sorry, you will need an email'})
+    email = forms.EmailField(max_length=100, help_text='Required', error_messages={
+                             'required': 'Sorry, you will need an email'})
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Repeat password', widget=forms.PasswordInput)
 
     class Meta:
         model = UserBase
         fields = ('user_name', 'email', )
-    
+
     def clean_username(self):
         user_name = self.cleaned_data['user_name'].lower()
         r = UserBase.objects.filter(user_name=user_name)
@@ -50,14 +51,13 @@ class RegistrationForm(forms.ModelForm):
         )
 
 
-
-
-
 class UserLoginForm(AuthenticationForm):
+    class Meta:
+        model = UserBase
 
-    user_name = forms.CharField(label='Username', widget=forms.TextInput(attrs={
+    username = forms.CharField(label='Email', widget=forms.TextInput(attrs={
         "class": "form-control mb-3",
-        "placeholder": "Usernameni kiriting",
+        "placeholder": "Emailingizni kiriting",
         'id': 'login-username'}))
 
     password = forms.CharField(label='Parol', widget=forms.PasswordInput(attrs={
@@ -75,9 +75,9 @@ class PwdResetForm(PasswordResetForm):
         email = self.cleaned_data['email']
         u = UserBase.objects.filter(email=email)
         if not u:
-            raise forms.ValidationError("Bunday email bilan ro'yhatdan o'tgan foydalanuvchi mavjud emas!")
+            raise forms.ValidationError(
+                "Bunday email bilan ro'yhatdan o'tgan foydalanuvchi mavjud emas!")
         return email
-
 
 
 class PwdResetConfirmForm(SetPasswordForm):
@@ -88,7 +88,6 @@ class PwdResetConfirmForm(SetPasswordForm):
     new_password2 = forms.CharField(
         label='Parolni tasdiqlang', widget=forms.TextInput(
             attrs={"class": "form-control mb-3", "placeholder": "Parolni tasdiqlang", "id": "form-newpass2"}))
-
 
 
 class UserEditForm(forms.ModelForm):
