@@ -60,6 +60,7 @@ def account_activate(request, uidb64, token):
 
 def login_user(request):
     form = UserLoginForm()
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
     if request.method == 'POST':
         login_form = UserLoginForm(data=request.POST)
         print(login_form.is_valid())
